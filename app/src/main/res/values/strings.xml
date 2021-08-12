@@ -3,4 +3,7 @@
     <string name="title">Tarefas</string>
     <string name="criar_tarefa">Criar Tarefa</string>
     <string name="cancelar">Cancelar</string>
+    <string name="nova_tarefa">Nova Tarefa</string>
+    <string name="editar">Editar</string>
+    <string name="deletar">Deletar</string>
 </resources>

@@ -1,17 +1,17 @@
 package santander.bootcamp.todolist.ui
 
+import android.app.Activity
 import android.os.Bundle
-import android.util.Log
+
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import santander.bootcamp.todolist.databinding.ActivityAddTaskBinding
-import santander.bootcamp.todolist.datasource.taskDataSource
+import santander.bootcamp.todolist.datasource.TaskDataSource
 import santander.bootcamp.todolist.extensions.format
 import santander.bootcamp.todolist.extensions.text
 import santander.bootcamp.todolist.model.Task
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -23,6 +23,17 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (intent.hasExtra(TASK_ID)) {
+
+            val taskId = intent.getIntExtra(TASK_ID, 0)
+            TaskDataSource.findById(taskId)?.let {
+                binding.tilTitle.text = it.title
+                binding.tilDate.text = it.date
+                binding.tilHour.text = it.hour
+
+            }
+        }
 
         insertListeners()
     }
@@ -67,12 +78,21 @@ class AddTaskActivity : AppCompatActivity() {
             val task = Task(
                 title = binding.tilTitle.text,
                 date = binding.tilDate.text,
-                hour = binding.tilHour.text
-            )
-            taskDataSource.insertTask(task)
-            Log.e("TAG", "insertListeners: " + taskDataSource.getList())
+                hour = binding.tilHour.text,
+                id = intent.getIntExtra(TASK_ID, 0)
 
+
+            )
+
+            TaskDataSource.insertTask(task)
+            setResult(Activity.RESULT_OK)
+            finish()
         }
+    }
+
+    companion object {
+
+        const val TASK_ID = "task_id"
     }
 }
 
