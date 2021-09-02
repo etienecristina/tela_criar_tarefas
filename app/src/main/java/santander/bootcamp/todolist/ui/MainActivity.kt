@@ -52,8 +52,11 @@ class MainActivity : AppCompatActivity() {
         binding.includeEmpty.emptyState.visibility = if (list.isEmpty())
             View.VISIBLE
         else View.GONE
-
-
+        binding.rvTasks.visibility = if(list.isEmpty()) {
+            View.GONE
+        } else{
+            View.VISIBLE
+        }
         adapter.submitList(TaskDataSource.getList())
 
     }
