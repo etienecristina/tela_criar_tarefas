@@ -6,4 +6,6 @@
     <string name="nova_tarefa">Nova Tarefa</string>
     <string name="editar">Editar</string>
     <string name="deletar">Deletar</string>
+    <string name="nenhuma_tarefa">Ops! Você não possui nenhuma tarefa!</string>
+
 </resources>

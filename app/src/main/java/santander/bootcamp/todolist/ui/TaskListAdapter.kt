@@ -44,7 +44,6 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCa
                 when (it.itemId) {
                     R.id.action_editar -> listenerEdit(item)
                     R.id.action_deletar -> listenerDelete(item)
-
                 }
                 return@setOnMenuItemClickListener true
             }

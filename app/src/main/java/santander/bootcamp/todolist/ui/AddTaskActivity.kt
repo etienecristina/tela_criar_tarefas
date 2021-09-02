@@ -34,7 +34,6 @@ class AddTaskActivity : AppCompatActivity() {
 
             }
         }
-
         insertListeners()
     }
 
@@ -80,8 +79,6 @@ class AddTaskActivity : AppCompatActivity() {
                 date = binding.tilDate.text,
                 hour = binding.tilHour.text,
                 id = intent.getIntExtra(TASK_ID, 0)
-
-
             )
 
             TaskDataSource.insertTask(task)

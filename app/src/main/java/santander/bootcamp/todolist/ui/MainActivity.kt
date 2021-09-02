@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import santander.bootcamp.todolist.databinding.ActivityMainBinding
 import santander.bootcamp.todolist.datasource.TaskDataSource
 
@@ -46,9 +47,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateList() {
+        val list = TaskDataSource.getList()
+
+        binding.includeEmpty.emptyState.visibility = if (list.isEmpty())
+            View.VISIBLE
+        else View.GONE
+
+
         adapter.submitList(TaskDataSource.getList())
 
     }
+
     companion object {
         private const val CREATE_NEW_TASK = 1000
     }
